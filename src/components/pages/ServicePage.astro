@@ -1,0 +1,41 @@
+---
+const { page } = Astro.props;
+---
+
+<section>
+  <img src={page.hero} alt={page.heading} class="h-[280px] w-full object-cover md:h-[360px]" />
+</section>
+
+<section class="bg-page px-4 py-10 text-ink">
+  <div class="mx-auto max-w-5xl">
+    <h1 class="text-3xl uppercase tracking-wide">{page.heading}</h1>
+    <div class="mt-6 space-y-4 leading-7">
+      {page.body.map((paragraph: string) => <p>{paragraph}</p>)}
+    </div>
+    {(page.columns || []).length > 0 && (
+      <div class="mt-8 flex flex-wrap gap-10">
+        {page.columns.map((column: string[]) => (
+          <ul class="min-w-40 list-disc pl-5 leading-8">
+            {column.map((item) => <li>{item}</li>)}
+          </ul>
+        ))}
+      </div>
+    )}
+    {(page.quotes || []).map((quote: { text: string; by: string }) => (
+      <blockquote class="mt-8 border-t border-neutral-300 pt-6 leading-7">
+        <p>{quote.text}</p>
+        <p class="mt-3 whitespace-pre-line font-bold">{quote.by}</p>
+      </blockquote>
+    ))}
+  </div>
+</section>
+
+{(page.gallery || []).length > 0 && (
+  <section class="bg-white px-4 py-8">
+    <div class="mx-auto flex max-w-6xl flex-wrap gap-3">
+      {page.gallery.map((src: string) => (
+        <img src={src} alt={page.heading} class="h-44 w-[48%] object-cover md:w-[23%]" />
+      ))}
+    </div>
+  </section>
+)}

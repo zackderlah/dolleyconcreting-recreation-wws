@@ -1,0 +1,23 @@
+---
+import { site } from "../../lib/cms";
+
+const { page } = Astro.props;
+---
+
+<section class="relative">
+  <img src={page.hero} alt="Dolley Concreting driveway" class="h-[640px] w-full object-cover" />
+  <div class="absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-white">
+    <img src={page.wordmark} alt="Dolley" class="w-[min(100%,420px)]" />
+    <h1 class="mt-2 text-2xl tracking-[0.18em] md:text-3xl">{page.heading}</h1>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      {page.buttons.map((button: { label: string; href: string }) => (
+        <a class="btn-red" href={button.href}>{button.label}</a>
+      ))}
+    </div>
+    <h2 class="mt-10 text-2xl font-bold tracking-wide">{page.phone}</h2>
+    <div class="mt-8 flex gap-3">
+      <a class="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-700 text-white" href={site.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">f</a>
+      <a class="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-700 text-white" href={site.emailHref} aria-label="Email">@</a>
+    </div>
+  </div>
+</section>

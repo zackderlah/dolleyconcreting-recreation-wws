@@ -1,0 +1,25 @@
+{
+  "name": "Dolley Concreting",
+  "phone": "0409 326 188",
+  "phoneHref": "tel:0409326188",
+  "office": "07 4635 0111",
+  "officeHref": "tel:0746350111",
+  "email": "admin@dolleyconcreting.com.au",
+  "emailHref": "mailto:admin@dolleyconcreting.com.au",
+  "logo": "/assets/dc-logo-red-white-50px_2_orig.png",
+  "favicon": "/assets/mhedcfzn.ico",
+  "facebook": "https://www.facebook.com/Dolley-Concreting-1384832038505488/",
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Commercial", "href": "/commercial-concreting-projects" },
+    { "label": "Residential", "href": "/residential-concreting-projects" },
+    { "label": "Decorative", "href": "/decorative-concrete" },
+    { "label": "Flake floors", "href": "/flake-floors" },
+    { "label": "About us", "href": "/about-dolley-concreting" },
+    { "label": "Contact", "href": "/contact-dolley-concreting" }
+  ],
+  "footerNav": [
+    { "label": "Working Websites", "href": "https://www.workingwebsites.net.au" },
+    { "label": "WebWave", "href": "https://webwave.com.au" }
+  ]
+}

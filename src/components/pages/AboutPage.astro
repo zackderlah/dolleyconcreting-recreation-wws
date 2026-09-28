@@ -1,0 +1,24 @@
+---
+const { page } = Astro.props;
+---
+
+<section>
+  <img src={page.hero} alt={page.heading} class="h-[280px] w-full object-cover md:h-[360px]" />
+</section>
+
+<section class="bg-page px-4 py-10 text-ink">
+  <div class="mx-auto max-w-5xl">
+    <h1 class="text-3xl uppercase tracking-wide">{page.heading}</h1>
+    <div class="mt-6 space-y-4 leading-7">
+      {page.body.map((paragraph: string) => <p>{paragraph}</p>)}
+    </div>
+    <div class="mt-8 flex flex-wrap gap-10">
+      {page.people.map((person: { name: string; role: string }) => (
+        <article>
+          <h2 class="text-lg font-bold">{person.name}</h2>
+          <p>{person.role}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

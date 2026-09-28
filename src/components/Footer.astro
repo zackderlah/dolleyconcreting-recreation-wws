@@ -1,0 +1,21 @@
+---
+import { site } from "../lib/cms";
+---
+
+<footer class="bg-nav px-6 py-8 text-sm text-white">
+  <section class="mx-auto flex max-w-6xl flex-wrap items-start justify-between gap-8">
+    <img src={site.logo} alt="Dolley Concreting" class="h-14 w-auto" />
+    <p>
+      ABN: 85 460 639 878<br />
+      QBCC: 1125002
+    </p>
+    <p>
+      Office: <a class="underline" href={site.officeHref}>{site.office}</a><br />
+      Mobile: <a class="underline" href={site.phoneHref}>{site.phone}</a>
+    </p>
+    <p>
+      Designed by <a class="text-red underline" href={site.footerNav[0].href}>{site.footerNav[0].label}</a>
+      Powered by <a class="text-red underline" href={site.footerNav[1].href}>{site.footerNav[1].label}</a>
+    </p>
+  </section>
+</footer>
