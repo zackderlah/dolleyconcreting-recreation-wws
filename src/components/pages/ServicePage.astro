@@ -21,6 +21,34 @@ const { page } = Astro.props;
         ))}
       </div>
     )}
+    {(page.gallery || []).length > 0 && (
+      <div class="photo-gallery" data-gallery>
+        <div class="photo-stage">
+          {page.gallery.map((src: string, index: number) => (
+            <img
+              src={src}
+              alt={page.heading}
+              data-main
+              class:list={["photo-main", index === 0 && "is-active"]}
+            />
+          ))}
+          <button class="photo-arrow photo-prev" type="button" data-prev aria-label="Previous photo"></button>
+          <button class="photo-arrow photo-next" type="button" data-next aria-label="Next photo"></button>
+        </div>
+        <div class="photo-thumbs" data-thumbs>
+          {page.gallery.map((src: string, index: number) => (
+            <button
+              type="button"
+              data-thumb
+              class:list={["photo-thumb", index === 0 && "is-active"]}
+              aria-label={`Show photo ${index + 1}`}
+            >
+              <img src={src} alt="" />
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
     {(page.quotes || []).map((quote: { text: string; by: string }) => (
       <blockquote class="mt-8 border-t border-neutral-300 pt-6 leading-7">
         <p>{quote.text}</p>
@@ -30,12 +58,27 @@ const { page } = Astro.props;
   </div>
 </section>
 
-{(page.gallery || []).length > 0 && (
-  <section class="bg-white px-4 py-8">
-    <div class="mx-auto flex max-w-6xl flex-wrap gap-3">
-      {page.gallery.map((src: string) => (
-        <img src={src} alt={page.heading} class="h-44 w-[48%] object-cover md:w-[23%]" />
-      ))}
-    </div>
-  </section>
-)}
+<script>
+  document.querySelectorAll("[data-gallery]").forEach((root) => {
+    const mains = [...root.querySelectorAll("[data-main]")];
+    const thumbs = [...root.querySelectorAll("[data-thumb]")];
+    const strip = root.querySelector("[data-thumbs]");
+    let index = 0;
+
+    const show = (next) => {
+      if (!mains.length) return;
+      index = (next + mains.length) % mains.length;
+      mains.forEach((img, n) => img.classList.toggle("is-active", n === index));
+      thumbs.forEach((btn, n) => btn.classList.toggle("is-active", n === index));
+      const thumb = thumbs[index];
+      if (strip instanceof HTMLElement && thumb instanceof HTMLElement) {
+        const left = thumb.offsetLeft - (strip.clientWidth - thumb.clientWidth) / 2;
+        strip.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+      }
+    };
+
+    root.querySelector("[data-prev]")?.addEventListener("click", () => show(index - 1));
+    root.querySelector("[data-next]")?.addEventListener("click", () => show(index + 1));
+    thumbs.forEach((btn, n) => btn.addEventListener("click", () => show(n)));
+  });
+</script>
