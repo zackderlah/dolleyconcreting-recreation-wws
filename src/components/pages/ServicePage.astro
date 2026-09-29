@@ -21,18 +21,16 @@ const { page } = Astro.props;
         ))}
       </div>
     )}
-    {(page.gallery || []).length > 0 && (
-      <div class="mt-8 flex flex-wrap gap-4">
-        {page.gallery.map((src: string, index: number) => (
-          <img
-            src={src}
-            alt={`${page.heading} project photo ${index + 1}`}
-            class="h-56 w-full object-cover md:h-64 md:w-[48%]"
-            loading="lazy"
-          />
-        ))}
-      </div>
-    )}
+    <div class="mt-8 flex flex-wrap gap-4">
+      {page.gallery.map((src: string, index: number) => (
+        <img
+          src={src}
+          alt={`${page.heading} project photo ${index + 1}`}
+          class="h-56 w-full object-cover md:h-64 md:w-[48%]"
+          loading="lazy"
+        />
+      ))}
+    </div>
     {(page.quotes || []).map((quote: { text: string; by: string }) => (
       <blockquote class="mt-8 border-t border-neutral-300 pt-6 leading-7">
         <p>{quote.text}</p>
