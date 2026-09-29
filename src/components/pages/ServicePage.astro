@@ -21,7 +21,7 @@ const { page } = Astro.props;
         ))}
       </div>
     )}
-    <div class="mt-8 flex flex-wrap gap-4">
+    <div data-gallery class="mt-8 flex flex-wrap gap-4">
       {page.gallery.map((src: string, index: number) => (
         <img
           src={src}
